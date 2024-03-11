@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests:api": "playwright test --config=api.config.ts --project=Chromium"
+    "tests:api": "playwright test --config=api.config.ts --project=Chromium",
+    "tests:e2e": "playwright test --config=e2e.config.ts --project=Chromium"
   },
   "keywords": [],
   "author": "",
