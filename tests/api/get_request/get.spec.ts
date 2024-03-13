@@ -18,16 +18,12 @@ test.describe("API GET requests", () => {
     expect(responseBody.data).toContainEqual(epxectedData);
   });
 
-  test("API GET request - assert response status to invalid endpoint", async ({
-    request,
-  }) => {
+  test("API GET request - assert response status to invalid endpoint", async ({ request,}) => {
     const response = await request.get(`${baseURL}/ksnksnvkdv/flktf`);
     expect(response.status()).toBe(404);
   });
 
-  test("API GET single user - assert response status and data", async ({
-    request,
-  }) => {
+  test("API GET single user - assert response status and data", async ({ request }) => {
     const response = await request.get(`${baseURL}/api/users/2`);
     const responseBody = JSON.parse(await response.text());
     const expectedData = {
@@ -45,16 +41,12 @@ test.describe("API GET requests", () => {
     expect(responseBody.data.avatar).toBe(expectedData.avatar);
   });
 
-  test("API GET unexistent user - assert response status", async ({
-    request,
-  }) => {
+  test("API GET unexistent user - assert response status", async ({ request }) => {
     const response = await request.get(`${baseURL}/api/users/23`);
     expect(response.status()).toBe(404);
   });
 
-  test("API GET a list of resources - assert response status and data", async ({
-    request,
-  }) => {
+  test("API GET a list of resources - assert response status and data", async ({ request }) => {
     const response = await request.get(`${baseURL}/api/unknown`);
     const responseBody = JSON.parse(await response.text());
     expect(responseBody.page).toBe(1);
