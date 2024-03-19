@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-
+import { expectedData } from "./expected_data";
 const baseURL = "https://reqres.in";
 
 test.describe("API GET requests", () => {
@@ -65,5 +65,14 @@ test.describe("API GET requests", () => {
     expect(data[2].year).toEqual(expectedData.year);
     expect(data[2].color).toEqual(expectedData.color);
     expect(data[2].pantone_value).toEqual(expectedData.pantone_value);
+  });
+
+  test("API GET delayed response", async({ request }) => {
+    const response = await request.get(`${baseURL}/api/users?delay=3`)
+    const responseBody = JSON.parse(await response.text());
+    expect(response.status()).toBe(200);
+    expect(responseBody).toEqual(expectedData);
+    expect(responseBody.data.length).toEqual(6);
+    expect(responseBody.support).toBeDefined();
   });
 });
